@@ -1,12 +1,12 @@
 #include "cat.h"
 
-Cat::Cat(std::string name) {
-  std::cout << "creating cat object" << std::endl;
-  pet_name = name;
+Cat::Cat(std::string arg) {
+  cat_name = arg;
+  std::cout << "Creating " << cat_name << " cat, address: " << this << std::endl;
 }
 
 Cat::~Cat() {
-  std::cout << "deleting cat object" << std::endl;
+  std::cout << "Destroying " << cat_name << " cat" << std::endl;
 }
 
 std::string Cat::class_name() {
@@ -14,7 +14,16 @@ std::string Cat::class_name() {
 }
 
 void Cat::meow() {
-  std::cout << "Meow! Meow! I'm very cute " << pet_name << std::endl;
+  std::cout << "Meow! Meow! I'm very cute " << cat_name << std::endl;
+}
+
+void Cat::look_at(world::Object * obj) {
+  std::cout << cat_name << " is looking at " << obj->obj_name << std::endl;
+  std::cout << obj->describe() << std::endl;
+}
+
+void Cat::sit_on(world::Object * obj) {
+  std::cout << cat_name << " is sitting on " << obj->obj_name << std::endl;
 }
 
 extern "C" {

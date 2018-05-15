@@ -10,7 +10,7 @@ DLHandler::~DLHandler() {
 }
 
 void DLHandler::reload() {
-  system("g++ -shared -fPIC lib/cat.cc -o bin/cat.so");
+  system("g++ lib/cat.cc lib/world/objects/object.cc -o bin/cat.so -shared -fPIC");
   if (handler != NULL) { dlclose(handler); }
 
   load_dl(dl_path);
