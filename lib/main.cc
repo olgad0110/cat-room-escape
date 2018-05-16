@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 #include "dlhandler.h"
-#include "world/world.h"
+#include "world.h"
 
 int main(int argc, char *argv[]) {
 

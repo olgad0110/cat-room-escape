@@ -10,9 +10,9 @@ DLHandler::~DLHandler() {
 }
 
 void DLHandler::reload() {
-  system("g++ lib/cat.cc lib/world/objects/object.cc -o bin/cat.so -shared -fPIC");
-  if (handler != NULL) { dlclose(handler); }
+  compile();
 
+  if (handler != NULL) { dlclose(handler); }
   load_dl(dl_path);
 
   create = (create_c*) dlsym(handler, "createCat");
@@ -22,6 +22,10 @@ void DLHandler::reload() {
   handle_error();
 
   std::cout << std::endl;
+}
+
+void DLHandler::compile() {
+  system("./bin/dlcompile.sh");
 }
 
 bool DLHandler::load_dl(const char * path) {

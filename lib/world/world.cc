@@ -4,6 +4,8 @@ namespace world {
   World::World(std::string arg) {
     world_name = arg;
     std::cout << "Creating " << world_name << " world" << std::endl;
+
+    map = new Map();
     create_object("chair");
     create_object("table");
     create_object("sofa");
@@ -14,6 +16,7 @@ namespace world {
     for(object_iterator it = objects.begin(); it < objects.end(); it++) {
       delete (*it);
     }
+    delete map;
     std::cout << "Destroying world" << std::endl;
   }
 

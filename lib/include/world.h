@@ -1,11 +1,12 @@
-#ifndef WORLD_WORLD_H
-#define WORLD_WORLD_H
+#ifndef WORLD_H
+#define WORLD_H
 
 #include <stdlib.h>
 #include <string>
 #include <iostream>
 #include <vector>
-#include "objects/object.h"
+#include "object.h"
+#include "map.h"
 
 namespace world {
   typedef std::vector<world::Object*> object_vector;
@@ -15,6 +16,7 @@ namespace world {
     public:
       std::string world_name;
       object_vector objects;
+      world::Map * map;
 
       World();
       World(std::string arg);

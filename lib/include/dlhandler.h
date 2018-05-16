@@ -1,5 +1,5 @@
-#ifndef DL_HANDLER_H
-#define DL_HANDLER_H
+#ifndef DLHANDLER_H
+#define DLHANDLER_H
 
 #include <stdlib.h>
 #include <string>
@@ -21,6 +21,7 @@ class DLHandler {
   private:
     bool load_dl(const char * path);
     bool handle_error();
+    void compile();
 };
 
 #endif

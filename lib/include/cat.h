@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string>
 #include <iostream>
-#include "world/objects/object.h"
+#include "object.h"
 
 class Cat {
   public:
