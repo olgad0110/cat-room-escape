@@ -2,8 +2,8 @@
 
 Cat::Cat(std::string arg) {
   cat_name = arg;
-  pos_x = 0;
-  pos_y = 0;
+  pos_x = 1;
+  pos_y = 1;
   std::cout << "Creating " << cat_name << " cat, address: " << this << std::endl;
 }
 
@@ -29,25 +29,25 @@ void Cat::sit_on(world::Object * obj) {
 }
 
 void Cat::go_up(world::World * world) {
-  if(world->map->grid[pos_y-1] != NULL && world->map->grid[pos_y-1][pos_x] != NULL) {
+  if(pos_y-1 < world->map->grid_size_y && pos_y-1 >= 0) {
     pos_y = pos_y-1;
   }
 }
 
 void Cat::go_down(world::World * world) {
-  if(world->map->grid[pos_y+1] != NULL && world->map->grid[pos_y+1][pos_x] != NULL) {
+  if(pos_y+1 < world->map->grid_size_y && pos_y+1 >= 0) {
     pos_y = pos_y+1;
   }
 }
 
 void Cat::go_left(world::World * world) {
-  if(world->map->grid[pos_y][pos_x-1] != NULL) {
+  if(pos_x-1 < world->map->grid_size_x && pos_x-1 >= 0) {
     pos_x = pos_x-1;
   }
 }
 
 void Cat::go_right(world::World * world) {
-  if(world->map->grid[pos_y][pos_x+1] != NULL) {
+  if(pos_x+1 < world->map->grid_size_x && pos_x+1 >= 0) {
     pos_x = pos_x+1;
   }
 }

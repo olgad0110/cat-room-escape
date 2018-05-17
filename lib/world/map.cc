@@ -28,36 +28,52 @@ namespace world {
   void Map::fill_empty() {
     for(int i = 0; i < grid_size_y; i++) {
       for(int j = 0; j < grid_size_x; j++) {
-        if(grid[i][j] == NULL) {
-          grid[i][j] = new world::Object("floor");
+        if(grid[i][j] == NULL && (i == 0 || i == grid_size_y-1 || j == 0 || j == grid_size_x-1)) {
+          grid[i][j] = new world::Object("wall");
+        } else if(grid[i][j] == NULL) {
+          grid[i][j] = new world::Object();
         }
       }
-    }
-  }
-
-  void Map::print() {
-    std::cout << "Map created" << std::endl;
-    for(int i = 0; i < grid_size_y; i++) {
-      for(int j = 0; j < grid_size_x; j++) {
-        if(grid[i][j] != NULL) {
-          std::cout << " | " << grid[i][j]->obj_name << " | ";
-        } else {
-          std::cout << " | NULL | ";
-        }
-      }
-      std::cout << std::endl;
     }
   }
 
   void Map::print(Cat * cat) {
+    int char_length = 18;
+
+    for(int j = 0; j < grid_size_x; j++) {
+      if(j == 0 || j == grid_size_x-1) {
+        std::cout << " " << std::string(char_length/3, '-');
+      } else {
+        std::cout << " " << std::string(char_length, '-');
+      }
+    }
+    std::cout << std::endl;
+
     for(int i = 0; i < grid_size_y; i++) {
       for(int j = 0; j < grid_size_x; j++) {
-        if(cat->pos_y == i && cat->pos_x == j) {
-          std::cout << " | 🐈  " << grid[i][j]->obj_name << " | ";
-        } else if(grid[i][j] != NULL) {
-          std::cout << " | " << grid[i][j]->obj_name << " | ";
+        if(j == 0 || j == grid_size_x-1) {
+          if(grid[i][j]->obj_name == "wall") {
+            std::cout << "| " << std::string(char_length/3 - 2, 'X') << " ";
+          } else {
+            std::cout << "| " << grid[i][j]->obj_name << std::string(char_length/3 - grid[i][j]->obj_name.size() - 1, ' ');
+          }
         } else {
-          std::cout << " | NULL | ";
+          if(grid[i][j]->obj_name == "wall") {
+            std::cout << "| " << std::string(char_length - 2, 'X') << " ";
+          } else if(cat->pos_y == i && cat->pos_x == j) {
+            std::cout << "| " << grid[i][j]->obj_name << std::string(char_length - grid[i][j]->obj_name.size() - 4, ' ') << "🐈  ";
+          } else {
+            std::cout << "| " << grid[i][j]->obj_name << std::string(char_length - grid[i][j]->obj_name.size() - 1, ' ');
+          }
+        }
+      }
+      std::cout << "|" << std::endl;
+
+      for(int j = 0; j < grid_size_x; j++) {
+        if(j == 0 || j == grid_size_x-1) {
+          std::cout << " " << std::string(char_length/3, '-');
+        } else {
+          std::cout << " " << std::string(char_length, '-');
         }
       }
       std::cout << std::endl;

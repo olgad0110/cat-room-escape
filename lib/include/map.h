@@ -22,7 +22,6 @@ namespace world {
 
       void insert_object(world::Object * object, int x, int y);
       void fill_empty();
-      void print();
       void print(Cat * cat);
   };
 }

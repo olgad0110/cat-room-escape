@@ -5,13 +5,34 @@ namespace world {
     world_name = arg;
     std::cout << "Creating " << world_name << " world" << std::endl;
 
-    map = new Map(3, 3);
-    map->insert_object(create_object("chair"), 0, 0);
-    map->insert_object(create_object("table"), 1, 1);
-    map->insert_object(create_object("sofa"), 2, 2);
-    map->insert_object(create_object("shelf"), 1, 2);
+    map = new Map(11, 11);
+    map->insert_object(create_object("table"), 2, 3);
+    map->insert_object(create_object("table"), 3, 3);
+    map->insert_object(create_object("chair"), 2, 2);
+    map->insert_object(create_object("chair"), 1, 3);
+    map->insert_object(create_object("chair"), 2, 4);
+    map->insert_object(create_object("chair"), 3, 4);
+    map->insert_object(create_object("chair"), 3, 2);
+    map->insert_object(create_object("chair"), 4, 3);
+    map->insert_object(create_object("sofa"), 7, 2);
+    map->insert_object(create_object("sofa"), 7, 3);
+    map->insert_object(create_object("sofa"), 7, 4);
+    map->insert_object(create_object("sofa"), 7, 5);
+    map->insert_object(create_object("TV"), 9, 3);
+    map->insert_object(create_object("TV"), 9, 4);
+    map->insert_object(create_object("TV table"), 9, 2);
+    map->insert_object(create_object("TV table"), 9, 5);
+    map->insert_object(create_object("bookstand"), 1, 9);
+    map->insert_object(create_object("bookstand"), 2, 9);
+    map->insert_object(create_object("sm bookstand"), 3, 9);
+    map->insert_object(create_object("sm bookstand"), 4, 9);
+    map->insert_object(create_object("shelf"), 5, 9);
+    map->insert_object(create_object("shelf"), 6, 9);
+    map->insert_object(create_object("shelf"), 8, 9);
+    map->insert_object(create_object("shelf"), 9, 8);
+    map->insert_object(create_object("door"), 0, 6);
+    map->insert_object(create_object("door"), 5, 0);
     map->fill_empty();
-    map->print();
   }
 
   World::~World() {

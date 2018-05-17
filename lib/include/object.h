@@ -12,6 +12,7 @@ namespace world {
     public:
       std::string obj_name;
 
+      Object();
       Object(std::string arg);
       ~Object();
 

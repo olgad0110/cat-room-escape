@@ -20,6 +20,10 @@ int main(int argc, char *argv[]) {
   std::cout << "Starting game loop" << std::endl << std::endl;
 
   while(state == 1) {
+    system("clear");
+    world->map->print(cat1);
+
+    std::cout << std::endl << "$ ";
     std::cin >> input;
 
     if(input == "q") {
@@ -39,8 +43,6 @@ int main(int argc, char *argv[]) {
     } else if(input == "r") {
       cat_handler->reload();
     }
-
-    world->map->print(cat1);
   }
 
   cat_handler->destroy(cat1);
