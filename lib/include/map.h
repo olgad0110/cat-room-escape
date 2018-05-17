@@ -20,7 +20,7 @@ namespace world {
       Map(const int &x, const int &y);
       ~Map();
 
-      void insert_object(world::Object * object, int x, int y);
+      void insert_object(world::Object * object, const int &x, const int &y);
       void fill_empty();
       std::string draw(Cat * cat);
     private:

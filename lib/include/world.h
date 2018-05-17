@@ -21,10 +21,10 @@ namespace world {
       world::Map * map;
 
       World();
-      World(std::string arg);
+      World(const std::string &arg);
       ~World();
 
-      world::Object * create_object(std::string name);
+      world::Object * create_object(const std::string &obj_name);
   };
 }
 

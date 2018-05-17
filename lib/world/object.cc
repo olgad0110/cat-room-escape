@@ -1,15 +1,27 @@
 #include "object.h"
 
 namespace world {
-  Object::Object() {}
+  Object::Object() {
+    collision = false;
+  }
   Object::~Object() {}
 
-  Object::Object(std::string arg) {
-    obj_name = arg;
+  Object::Object(const std::string &arg_n) {
+    collision = true;
+    obj_name = arg_n;
+  }
+
+  Object::Object(const std::string &arg_n, const bool &arg_c) {
+    collision = arg_c;
+    obj_name = arg_n;
   }
 
   std::string Object::describe() {
     return "This is " + obj_name;
+  }
+
+  bool Object::can_be_entered() {
+    return !collision;
   }
 
   std::string Object::draw(const int &char_length, const int &grid_size_x, const int &x, const int &y, const bool &cat) {

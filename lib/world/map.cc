@@ -17,7 +17,7 @@ namespace world {
     delete grid;
   }
 
-  void Map::insert_object(world::Object * object, int x, int y) {
+  void Map::insert_object(world::Object * object, const int &x, const int &y) {
     grid[y][x] = object;
   }
 
@@ -25,7 +25,7 @@ namespace world {
     for(int i = 0; i < grid_size_y; i++) {
       for(int j = 0; j < grid_size_x; j++) {
         if(grid[i][j] == NULL && (i == 0 || i == grid_size_y-1 || j == 0 || j == grid_size_x-1)) {
-          grid[i][j] = new world::Object("wall");
+          grid[i][j] = new world::Object("wall", true);
         } else if(grid[i][j] == NULL) {
           grid[i][j] = new world::Object();
         }

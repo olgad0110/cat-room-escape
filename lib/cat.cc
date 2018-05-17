@@ -25,25 +25,25 @@ void Cat::sit_on(world::Object * obj) {
 }
 
 void Cat::go_up(world::World * world) {
-  if(pos_y-1 < world->map->grid_size_y && pos_y-1 >= 0) {
+  if(pos_y-1 < world->map->grid_size_y && pos_y-1 >= 0 && world->map->grid[pos_y-1][pos_x]->can_be_entered()) {
     pos_y = pos_y-1;
   }
 }
 
 void Cat::go_down(world::World * world) {
-  if(pos_y+1 < world->map->grid_size_y && pos_y+1 >= 0) {
+  if(pos_y+1 < world->map->grid_size_y && pos_y+1 >= 0 && world->map->grid[pos_y+1][pos_x]->can_be_entered()) {
     pos_y = pos_y+1;
   }
 }
 
 void Cat::go_left(world::World * world) {
-  if(pos_x-1 < world->map->grid_size_x && pos_x-1 >= 0) {
+  if(pos_x-1 < world->map->grid_size_x && pos_x-1 >= 0 && world->map->grid[pos_y][pos_x-1]->can_be_entered()) {
     pos_x = pos_x-1;
   }
 }
 
 void Cat::go_right(world::World * world) {
-  if(pos_x+1 < world->map->grid_size_x && pos_x+1 >= 0) {
+  if(pos_x+1 < world->map->grid_size_x && pos_x+1 >= 0 && world->map->grid[pos_y][pos_x+1]->can_be_entered()) {
     pos_x = pos_x+1;
   }
 }

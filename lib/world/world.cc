@@ -1,7 +1,7 @@
 #include "world.h"
 
 namespace world {
-  World::World(std::string arg) {
+  World::World(const std::string &arg) {
     world_name = arg;
 
     map = new Map(11, 11);
@@ -41,7 +41,7 @@ namespace world {
     delete map;
   }
 
-  world::Object * World::create_object(std::string obj_name) {
+  world::Object * World::create_object(const std::string &obj_name) {
     world::Object * obj = new world::Object(obj_name);
     objects.push_back(obj);
     return obj;
