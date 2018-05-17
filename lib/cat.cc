@@ -1,7 +1,8 @@
 #include "cat.h"
 
-Cat::Cat(std::string arg) {
-  cat_name = arg;
+Cat::Cat(const std::string &arg_n, const std::string &arg_i) {
+  cat_name = arg_n;
+  icon = arg_i;
   pos_x = 1;
   pos_y = 1;
   std::cout << cat_name << " has woken up ready to play." << std::endl;
@@ -49,8 +50,8 @@ void Cat::go_right(world::World * world) {
 }
 
 extern "C" {
-  Cat * createCat(std::string name) {
-    return new Cat(name);
+  Cat * createCat(const std::string &name, const std::string &icon) {
+    return new Cat(name, icon);
   }
 
   void destroyCat(Cat * cat) {

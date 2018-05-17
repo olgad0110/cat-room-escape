@@ -24,7 +24,7 @@ namespace world {
     return !collision;
   }
 
-  std::string Object::draw(const int &char_length, const int &grid_size_x, const int &x, const int &y, const bool &cat) {
+  std::string Object::draw(const int &char_length, const int &grid_size_x, const int &x, const int &y, const bool &draw_cat, Cat * cat) {
     std::string r = "";
 
     if(x == 0 || x == grid_size_x-1) {
@@ -36,8 +36,8 @@ namespace world {
     } else {
       if(obj_name == "wall") {
         r += std::string(char_length - 2, 'X') + " ";
-      } else if(cat) {
-        r += obj_name + std::string(char_length - obj_name.size() - 4, ' ') + "🐈  ";
+      } else if(draw_cat) {
+        r += obj_name + std::string(char_length - obj_name.size() - 4, ' ') + cat->icon + "  ";
       } else {
         r += obj_name + std::string(char_length - obj_name.size() - 1, ' ');
       }

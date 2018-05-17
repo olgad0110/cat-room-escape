@@ -9,10 +9,11 @@
 #include "map.h"
 
 namespace world {
+  class Map;
+  class Object;
+
   typedef std::vector<world::Object*> object_vector;
   typedef object_vector::iterator object_iterator;
-
-  class Map;
 
   class World {
     public:

@@ -43,7 +43,7 @@ namespace world {
     for(int i = 0; i < grid_size_y; i++) {
       for(int j = 0; j < grid_size_x; j++) {
         if(cat->pos_x == j && cat->pos_y == i) { draw_cat = true; } else { draw_cat = false; }
-        result += "| " + grid[i][j]->draw(char_length, grid_size_x, j, i, draw_cat);
+        result += "| " + grid[i][j]->draw(char_length, grid_size_x, j, i, draw_cat, cat);
       }
       result += "|\n";
       result += draw_horizontal_border(char_length);

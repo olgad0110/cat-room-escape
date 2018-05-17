@@ -11,6 +11,8 @@
 class Cat;
 
 namespace world {
+  class Object;
+
   class Map {
     public:
       int grid_size_x;

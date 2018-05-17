@@ -9,15 +9,17 @@
 
 namespace world {
   class World;
+  class Object;
 }
 
 class Cat {
   public:
     std::string cat_name;
+    std::string icon;
     int pos_x;
     int pos_y;
 
-    Cat(std::string arg);
+    Cat(const std::string &arg_n, const std::string &arg_i);
     virtual ~Cat();
 
     virtual std::string meow();
@@ -30,7 +32,7 @@ class Cat {
 
 };
 
-typedef Cat * create_c(std::string name);
+typedef Cat * create_c(const std::string &name, const std::string &icon);
 typedef void destroy_c(Cat * cat);
 
 #endif

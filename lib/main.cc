@@ -24,11 +24,22 @@ int main(int argc, char *argv[]) {
 
 Cat* init_game(int &game_state, DLHandler * cat_handler) {
   std::string name;
+  int icon_number;
+  std::string icon;
   std::string input;
 
-  std::cout << "Welcome to cat room escape!" << std::endl << std::endl << "What's your cat name? ";
+  std::cout << "Welcome to cat room escape!" << std::endl << std::endl;
+  std::cout << "What's your cat name? ";
   std::cin >> name;
-  Cat * cat = cat_handler->create(name);
+
+  std::cout << "What's your cat icon? 1: 🐈   2: 🐅   3: 🐆   ";
+  std::cin >> icon_number;
+
+  if(icon_number == 1) { icon = "🐈"; } else
+  if(icon_number == 2) { icon = "🐅"; } else
+  if(icon_number == 3) { icon = "🐆"; } else { icon = "🐈"; }
+
+  Cat * cat = cat_handler->create(name, icon);
 
   std::cout << std::endl << "Do you want to play? [Y/n] ";
   do {

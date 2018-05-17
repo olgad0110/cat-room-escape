@@ -6,6 +6,9 @@
 #include <sstream>
 #include <iostream>
 #include <vector>
+#include "cat.h"
+
+class Cat;
 
 namespace world {
   class Object {
@@ -19,7 +22,7 @@ namespace world {
       ~Object();
 
       std::string describe();
-      std::string draw(const int &char_length, const int &grid_size_x, const int &x, const int &y, const bool &cat);
+      std::string draw(const int &char_length, const int &grid_size_x, const int &x, const int &y, const bool &draw_cat, Cat * cat);
       bool can_be_entered();
   };
 }
