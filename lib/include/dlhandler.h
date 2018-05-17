@@ -16,7 +16,7 @@ class DLHandler {
 
     DLHandler(const char * path);
     ~DLHandler();
-    void reload();
+    std::string reload();
 
   private:
     bool load_dl(const char * path);

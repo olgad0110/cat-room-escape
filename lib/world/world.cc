@@ -3,7 +3,6 @@
 namespace world {
   World::World(std::string arg) {
     world_name = arg;
-    std::cout << "Creating " << world_name << " world" << std::endl;
 
     map = new Map(11, 11);
     map->insert_object(create_object("table"), 2, 3);
@@ -40,7 +39,6 @@ namespace world {
       delete (*it);
     }
     delete map;
-    std::cout << "Destroying world" << std::endl;
   }
 
   world::Object * World::create_object(std::string obj_name) {

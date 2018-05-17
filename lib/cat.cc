@@ -4,19 +4,15 @@ Cat::Cat(std::string arg) {
   cat_name = arg;
   pos_x = 1;
   pos_y = 1;
-  std::cout << "Creating " << cat_name << " cat, address: " << this << std::endl;
+  std::cout << cat_name << " has woken up ready to play." << std::endl;
 }
 
 Cat::~Cat() {
-  std::cout << "Destroying " << cat_name << " cat" << std::endl;
+  std::cout << cat_name << " decided to go to sleep." << std::endl;
 }
 
-std::string Cat::class_name() {
-  return "Cat";
-}
-
-void Cat::meow() {
-  std::cout << "Meow! Meow! I'm very cute " << cat_name << std::endl;
+std::string Cat::meow() {
+  return "Meow! Meow! I'm very cute "+cat_name;
 }
 
 void Cat::look_at(world::Object * obj) {

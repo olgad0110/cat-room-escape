@@ -22,7 +22,9 @@ namespace world {
 
       void insert_object(world::Object * object, int x, int y);
       void fill_empty();
-      void print(Cat * cat);
+      std::string draw(Cat * cat);
+    private:
+      std::string draw_horizontal_border(const int &char_length);
   };
 }
 

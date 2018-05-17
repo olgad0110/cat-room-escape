@@ -9,7 +9,7 @@ DLHandler::~DLHandler() {
   dlclose(handler);
 }
 
-void DLHandler::reload() {
+std::string DLHandler::reload() {
   compile();
 
   if (handler != NULL) { dlclose(handler); }
@@ -21,7 +21,7 @@ void DLHandler::reload() {
   destroy = (destroy_c*) dlsym(handler,"destroyCat");
   handle_error();
 
-  std::cout << std::endl;
+  return "Compiling cat.so... Done";
 }
 
 void DLHandler::compile() {
@@ -34,7 +34,6 @@ bool DLHandler::load_dl(const char * path) {
     std::cerr << "Cannot load dynamic library: " << dlerror() << std::endl;
     return false;
   }
-  std::cout << "Loaded dynamic library" << std::endl;
   return true;
 }
 
@@ -44,6 +43,5 @@ bool DLHandler::handle_error() {
     std::cout << "Cannot load symbol: " << dlsym_error << std::endl;
     return false;
   }
-  std::cout << "Loaded symbol" << std::endl;
   return true;
 }

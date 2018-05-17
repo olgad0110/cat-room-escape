@@ -20,8 +20,7 @@ class Cat {
     Cat(std::string arg);
     virtual ~Cat();
 
-    virtual std::string class_name();
-    virtual void meow();
+    virtual std::string meow();
     virtual void look_at(world::Object * obj);
     virtual void sit_on(world::Object * obj);
     virtual void go_up(world::World * world);
