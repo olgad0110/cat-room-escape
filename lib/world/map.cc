@@ -48,4 +48,19 @@ namespace world {
       std::cout << std::endl;
     }
   }
+
+  void Map::print(Cat * cat) {
+    for(int i = 0; i < grid_size_y; i++) {
+      for(int j = 0; j < grid_size_x; j++) {
+        if(cat->pos_y == i && cat->pos_x == j) {
+          std::cout << " | 🐈  " << grid[i][j]->obj_name << " | ";
+        } else if(grid[i][j] != NULL) {
+          std::cout << " | " << grid[i][j]->obj_name << " | ";
+        } else {
+          std::cout << " | NULL | ";
+        }
+      }
+      std::cout << std::endl;
+    }
+  }
 }

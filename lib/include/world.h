@@ -12,6 +12,8 @@ namespace world {
   typedef std::vector<world::Object*> object_vector;
   typedef object_vector::iterator object_iterator;
 
+  class Map;
+
   class World {
     public:
       std::string world_name;

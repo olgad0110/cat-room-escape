@@ -5,36 +5,46 @@
 #include "world.h"
 
 int main(int argc, char *argv[]) {
+  std::string input;
+  int state = 1;
 
   DLHandler * cat_handler = new DLHandler("bin/cat.so");
-  std::string reload;
 
-  world::World * w = new world::World("Cat room");
+  world::World * world = new world::World("Cat room");
 
   std::cout << std::endl << "What's your cat name?" << std::endl;
   std::string name;
   std::cin >> name;
   Cat * cat1 = cat_handler->create(name);
 
-  while (true) {
-    cat1->meow();
+  std::cout << "Starting game loop" << std::endl << std::endl;
 
-    for(world::object_iterator it = w->objects.begin(); it < w->objects.end(); it++) {
-      cat1->look_at(*it);
-    }
+  while(state == 1) {
+    std::cin >> input;
 
-    std::cout << std::endl << "Do you want to reload dynamic library? [Y/n]" << std::endl;
-    std::cin >> reload;
+    if(input == "q") {
+      state = 0;
 
-    if (reload == "Y") {
+    } else if(input == "w") {
+      cat1->go_up(world);
+    } else if(input == "s") {
+      cat1->go_down(world);
+    } else if(input == "a") {
+      cat1->go_left(world);
+    } else if(input == "d") {
+      cat1->go_right(world);
+
+    } else if(input == "m") {
+      cat1->meow();
+    } else if(input == "r") {
       cat_handler->reload();
-    } else {
-      break;
     }
+
+    world->map->print(cat1);
   }
 
   cat_handler->destroy(cat1);
-  delete w;
+  delete world;
   delete cat_handler;
 
   return EXIT_SUCCESS;

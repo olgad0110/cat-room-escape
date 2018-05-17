@@ -6,6 +6,9 @@
 #include <iostream>
 #include <vector>
 #include "object.h"
+#include "cat.h"
+
+class Cat;
 
 namespace world {
   class Map {
@@ -20,6 +23,7 @@ namespace world {
       void insert_object(world::Object * object, int x, int y);
       void fill_empty();
       void print();
+      void print(Cat * cat);
   };
 }
 
