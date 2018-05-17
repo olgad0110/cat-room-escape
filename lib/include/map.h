@@ -8,14 +8,18 @@
 #include "object.h"
 
 namespace world {
-  typedef std::vector< std::vector<world::Object*> > object_table;
-
   class Map {
     public:
-      object_table grid;
+      int grid_size_x;
+      int grid_size_y;
+      world::Object*** grid;
 
-      Map();
+      Map(const int &x, const int &y);
       ~Map();
+
+      void insert_object(world::Object * object, int x, int y);
+      void fill_empty();
+      void print();
   };
 }
 

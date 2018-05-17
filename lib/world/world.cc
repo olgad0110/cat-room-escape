@@ -5,11 +5,13 @@ namespace world {
     world_name = arg;
     std::cout << "Creating " << world_name << " world" << std::endl;
 
-    map = new Map();
-    create_object("chair");
-    create_object("table");
-    create_object("sofa");
-    create_object("shelf");
+    map = new Map(3, 3);
+    map->insert_object(create_object("chair"), 0, 0);
+    map->insert_object(create_object("table"), 1, 1);
+    map->insert_object(create_object("sofa"), 2, 2);
+    map->insert_object(create_object("shelf"), 1, 2);
+    map->fill_empty();
+    map->print();
   }
 
   World::~World() {
