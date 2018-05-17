@@ -19,7 +19,7 @@ all:
 	g++ -c -o bin/object.o lib/world/object.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/world.o lib/world/world.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/map.o lib/world/map.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/cat.so lib/cat.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
+	g++ -c -o bin/cat.o lib/cat.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/dlhandler.o lib/dlhandler.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/main.o lib/main.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 
