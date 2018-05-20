@@ -4,6 +4,7 @@ Game::Game() {
   state = 0;
   cat_handler = new DLHandler("bin/cat.so");
   world = new world::World("Cat room");
+  manager = new Manager();
 }
 
 Game::~Game() {
