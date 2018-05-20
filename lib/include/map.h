@@ -6,24 +6,25 @@
 #include <iostream>
 #include <vector>
 #include "object.h"
+#include "tile.h"
 #include "cat.h"
 
 class Cat;
 
 namespace world {
   class Object;
+  class Tile;
 
   class Map {
     public:
       int grid_size_x;
       int grid_size_y;
-      world::Object*** grid;
+      world::Tile*** grid;
 
-      Map(const int &x, const int &y);
+      Map();
       ~Map();
 
-      void insert_object(world::Object * object, const int &x, const int &y);
-      void fill_empty();
+      void create_object(const std::string &obj_name, const int &x, const int &y);
       std::string draw(Cat * cat);
     private:
       std::string draw_horizontal_border(const int &char_length);

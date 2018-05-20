@@ -23,25 +23,4 @@ namespace world {
   bool Object::can_be_entered() {
     return !collision;
   }
-
-  std::string Object::draw(const int &char_length, const int &grid_size_x, const int &x, const int &y, const bool &draw_cat, Cat * cat) {
-    std::string r = "";
-
-    if(x == 0 || x == grid_size_x-1) {
-      if(obj_name == "wall") {
-        r += std::string(char_length/3 - 2, 'X') + " ";
-      } else {
-        r += obj_name + std::string(char_length/3 - obj_name.size() - 1, ' ');
-      }
-    } else {
-      if(obj_name == "wall") {
-        r += std::string(char_length - 2, 'X') + " ";
-      } else if(draw_cat) {
-        r += obj_name + std::string(char_length - obj_name.size() - 4, ' ') + cat->icon + "  ";
-      } else {
-        r += obj_name + std::string(char_length - obj_name.size() - 1, ' ');
-      }
-    }
-    return r;
-  }
 }

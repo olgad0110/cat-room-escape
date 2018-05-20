@@ -17,6 +17,7 @@ HLOOKUPFLAGS = -I./lib/include
 
 all:
 	g++ -c -o bin/object.o lib/world/object.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
+	g++ -c -o bin/tile.o lib/world/tile.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/world.o lib/world/world.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/map.o lib/world/map.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/cat.o lib/cat.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
@@ -25,5 +26,5 @@ all:
 	g++ -c -o bin/game.o lib/game.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/main.o lib/main.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 
-	g++ -o bin/cat.so bin/cat.o bin/object.o -shared -fPIC ${CXXFLAGS}
-	g++ -o bin/main bin/main.o bin/game.o bin/manager.o bin/dlhandler.o bin/map.o bin/object.o bin/world.o -ldl ${CXXFLAGS}
+	g++ -o bin/cat.so bin/cat.o bin/object.o bin/tile.o -shared -fPIC ${CXXFLAGS}
+	g++ -o bin/main bin/main.o bin/game.o bin/manager.o bin/dlhandler.o bin/map.o bin/object.o bin/world.o bin/tile.o -ldl ${CXXFLAGS}

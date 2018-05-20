@@ -1,14 +1,51 @@
 #include "map.h"
 
 namespace world {
-  Map::Map(const int &x, const int &y) {
-    grid_size_x = x;
-    grid_size_y = y;
+  Map::Map() {
+    grid_size_x = 11;
+    grid_size_y = 11;
 
-    grid = new world::Object**[grid_size_y];
+    grid = new world::Tile**[grid_size_y];
     for(int i = 0; i < grid_size_y; ++i) {
-      grid[i] = new world::Object*[grid_size_x];
+      grid[i] = new world::Tile*[grid_size_x];
     }
+
+    for(int i = 0; i < grid_size_y; i++) {
+      for(int j = 0; j < grid_size_x; j++) {
+        if(grid[i][j] == NULL && (i == 0 || i == grid_size_y-1 || j == 0 || j == grid_size_x-1)) {
+          grid[i][j] = new world::Tile("wall");
+        } else if(grid[i][j] == NULL) {
+          grid[i][j] = new world::Tile();
+        }
+      }
+    }
+
+    create_object("table", 2, 3);
+    create_object("table", 3, 3);
+    create_object("chair", 2, 2);
+    create_object("chair", 1, 3);
+    create_object("chair", 2, 4);
+    create_object("chair", 3, 4);
+    create_object("chair", 3, 2);
+    create_object("chair", 4, 3);
+    create_object("sofa", 7, 2);
+    create_object("sofa", 7, 3);
+    create_object("sofa", 7, 4);
+    create_object("sofa", 7, 5);
+    create_object("TV", 9, 3);
+    create_object("TV", 9, 4);
+    create_object("TV table", 9, 2);
+    create_object("TV table", 9, 5);
+    create_object("bookstand", 1, 9);
+    create_object("bookstand", 2, 9);
+    create_object("sm bookstand", 3, 9);
+    create_object("sm bookstand", 4, 9);
+    create_object("shelf", 5, 9);
+    create_object("shelf", 6, 9);
+    create_object("shelf", 8, 9);
+    create_object("shelf", 9, 8);
+    create_object("door", 0, 6);
+    create_object("door", 5, 0);
   }
 
   Map::~Map() {
@@ -17,20 +54,9 @@ namespace world {
     delete grid;
   }
 
-  void Map::insert_object(world::Object * object, const int &x, const int &y) {
-    grid[y][x] = object;
-  }
-
-  void Map::fill_empty() {
-    for(int i = 0; i < grid_size_y; i++) {
-      for(int j = 0; j < grid_size_x; j++) {
-        if(grid[i][j] == NULL && (i == 0 || i == grid_size_y-1 || j == 0 || j == grid_size_x-1)) {
-          grid[i][j] = new world::Object("wall", true);
-        } else if(grid[i][j] == NULL) {
-          grid[i][j] = new world::Object();
-        }
-      }
-    }
+  void Map::create_object(const std::string &obj_name, const int &x, const int &y) {
+    world::Object * obj = new world::Object(obj_name);
+    grid[y][x]->insert_object(obj);
   }
 
   std::string Map::draw(Cat * cat) {

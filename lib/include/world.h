@@ -6,26 +6,21 @@
 #include <iostream>
 #include <vector>
 #include "object.h"
+#include "tile.h"
 #include "map.h"
 
 namespace world {
   class Map;
   class Object;
-
-  typedef std::vector<world::Object*> object_vector;
-  typedef object_vector::iterator object_iterator;
+  class Tile;
 
   class World {
     public:
-      std::string world_name;
-      object_vector objects;
+      std::string name;
       world::Map * map;
 
-      World();
       World(const std::string &arg);
       ~World();
-
-      world::Object * create_object(const std::string &obj_name);
   };
 }
 

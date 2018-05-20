@@ -2,14 +2,14 @@
 
 Game::Game() {
   state = 0;
-  cat_handler = new DLHandler("bin/cat.so");
   world = new world::World("Cat room");
+  cat_handler = new DLHandler("bin/cat.so");
   manager = new Manager();
 }
 
 Game::~Game() {
-  cat_handler->destroy(cat);
   delete world;
+  cat_handler->destroy(cat);
   delete cat_handler;
 }
 

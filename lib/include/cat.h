@@ -5,11 +5,13 @@
 #include <string>
 #include <iostream>
 #include "object.h"
+#include "tile.h"
 #include "world.h"
 
 namespace world {
   class World;
   class Object;
+  class Tile;
 }
 
 class Cat {
