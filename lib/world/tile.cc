@@ -5,14 +5,14 @@ namespace world {
     size_x = 10;
     size_y = 10;
     collision = false;
-    objects.reserve(10);
+    entities.reserve(10);
   }
 
   Tile::Tile(const std::string &arg) {
     size_x = 10;
     size_y = 10;
     name = arg;
-    objects.reserve(10);
+    entities.reserve(10);
     if(name == "wall") {
       collision = true;
     } else {
@@ -21,13 +21,13 @@ namespace world {
   }
 
   Tile::~Tile() {
-    for(object_iterator it = objects.begin(); it < objects.end(); it++) {
+    for(entity_iterator it = entities.begin(); it < entities.end(); it++) {
       delete (*it);
     }
   }
 
-  void Tile::insert_object(world::Object * obj) {
-    objects.push_back(obj);
+  void Tile::insert_entity(world::Entity * obj) {
+    entities.push_back(obj);
     if(name == "wall") {
       name = "";
       collision = false;
@@ -41,8 +41,8 @@ namespace world {
   std::string Tile::draw(const int &char_length, const int &grid_size_x, const int &x, const int &y, const bool &draw_cat, Cat * cat) {
     std::string r = "";
     std::string obj_name;
-    if(objects.size() > 0) {
-      obj_name = objects.front()->obj_name;
+    if(entities.size() > 0) {
+      obj_name = entities.front()->obj_name;
     } else {
       obj_name = name;
     }

@@ -5,14 +5,14 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "object.h"
+#include "entity.h"
 #include "tile.h"
 #include "cat.h"
 
 class Cat;
 
 namespace world {
-  class Object;
+  class Entity;
   class Tile;
 
   class Map {
@@ -24,7 +24,7 @@ namespace world {
       Map();
       ~Map();
 
-      void create_object(const std::string &obj_name, const int &x, const int &y);
+      void create_entity(const std::string &obj_name, const int &x, const int &y);
       std::string draw(Cat * cat);
     private:
       std::string draw_horizontal_border(const int &char_length);

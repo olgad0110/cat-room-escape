@@ -16,12 +16,12 @@ std::string Cat::meow() {
   return "Meow! Meow! I'm very cute "+cat_name;
 }
 
-void Cat::look_at(world::Object * obj) {
+void Cat::look_at(world::Entity * obj) {
   std::cout << cat_name << " is looking at " << obj->obj_name << std::endl;
   std::cout << obj->describe() << std::endl;
 }
 
-void Cat::sit_on(world::Object * obj) {
+void Cat::sit_on(world::Entity * obj) {
   std::cout << cat_name << " is sitting on " << obj->obj_name << std::endl;
 }
 

@@ -11,15 +11,15 @@
 class Cat;
 
 namespace world {
-  class Object {
+  class Entity {
     public:
       std::string obj_name;
       bool collision;
 
-      Object();
-      Object(const std::string &arg_n);
-      Object(const std::string &arg_n, const bool &arg_c);
-      ~Object();
+      Entity();
+      Entity(const std::string &arg_n);
+      Entity(const std::string &arg_n, const bool &arg_c);
+      ~Entity();
 
       std::string describe();
       std::string draw(const int &char_length, const int &grid_size_x, const int &x, const int &y, const bool &draw_cat, Cat * cat);

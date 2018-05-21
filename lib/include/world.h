@@ -5,13 +5,13 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "object.h"
+#include "entity.h"
 #include "tile.h"
 #include "map.h"
 
 namespace world {
   class Map;
-  class Object;
+  class Entity;
   class Tile;
 
   class World {

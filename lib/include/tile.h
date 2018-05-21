@@ -6,16 +6,16 @@
 #include <iostream>
 #include <vector>
 #include "world.h"
-#include "object.h"
+#include "entity.h"
 #include "cat.h"
 
 class Cat;
 
 namespace world {
-  class Object;
+  class Entity;
 
-  typedef std::vector<world::Object*> object_vector;
-  typedef object_vector::iterator object_iterator;
+  typedef std::vector<world::Entity*> entity_vector;
+  typedef entity_vector::iterator entity_iterator;
 
   class Tile {
     public:
@@ -23,13 +23,13 @@ namespace world {
       int size_y;
       bool collision;
       std::string name;
-      object_vector objects;
+      entity_vector entities;
 
       Tile();
       Tile(const std::string &arg);
       ~Tile();
 
-      void insert_object(world::Object * obj);
+      void insert_entity(world::Entity * obj);
       bool can_be_entered();
       std::string draw(const int &char_length, const int &grid_size_x, const int &x, const int &y, const bool &draw_cat, Cat * cat);
   };

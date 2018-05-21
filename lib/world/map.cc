@@ -20,32 +20,32 @@ namespace world {
       }
     }
 
-    create_object("table", 2, 3);
-    create_object("table", 3, 3);
-    create_object("chair", 2, 2);
-    create_object("chair", 1, 3);
-    create_object("chair", 2, 4);
-    create_object("chair", 3, 4);
-    create_object("chair", 3, 2);
-    create_object("chair", 4, 3);
-    create_object("sofa", 7, 2);
-    create_object("sofa", 7, 3);
-    create_object("sofa", 7, 4);
-    create_object("sofa", 7, 5);
-    create_object("TV", 9, 3);
-    create_object("TV", 9, 4);
-    create_object("TV table", 9, 2);
-    create_object("TV table", 9, 5);
-    create_object("bookstand", 1, 9);
-    create_object("bookstand", 2, 9);
-    create_object("sm bookstand", 3, 9);
-    create_object("sm bookstand", 4, 9);
-    create_object("shelf", 5, 9);
-    create_object("shelf", 6, 9);
-    create_object("shelf", 8, 9);
-    create_object("shelf", 9, 8);
-    create_object("door", 0, 6);
-    create_object("door", 5, 0);
+    create_entity("table", 2, 3);
+    create_entity("table", 3, 3);
+    create_entity("chair", 2, 2);
+    create_entity("chair", 1, 3);
+    create_entity("chair", 2, 4);
+    create_entity("chair", 3, 4);
+    create_entity("chair", 3, 2);
+    create_entity("chair", 4, 3);
+    create_entity("sofa", 7, 2);
+    create_entity("sofa", 7, 3);
+    create_entity("sofa", 7, 4);
+    create_entity("sofa", 7, 5);
+    create_entity("TV", 9, 3);
+    create_entity("TV", 9, 4);
+    create_entity("TV table", 9, 2);
+    create_entity("TV table", 9, 5);
+    create_entity("bookstand", 1, 9);
+    create_entity("bookstand", 2, 9);
+    create_entity("sm bookstand", 3, 9);
+    create_entity("sm bookstand", 4, 9);
+    create_entity("shelf", 5, 9);
+    create_entity("shelf", 6, 9);
+    create_entity("shelf", 8, 9);
+    create_entity("shelf", 9, 8);
+    create_entity("door", 0, 6);
+    create_entity("door", 5, 0);
   }
 
   Map::~Map() {
@@ -54,9 +54,9 @@ namespace world {
     delete [] grid;
   }
 
-  void Map::create_object(const std::string &obj_name, const int &x, const int &y) {
-    world::Object * obj = new world::Object(obj_name);
-    grid[y][x]->insert_object(obj);
+  void Map::create_entity(const std::string &obj_name, const int &x, const int &y) {
+    world::Entity * obj = new world::Entity(obj_name);
+    grid[y][x]->insert_entity(obj);
   }
 
   std::string Map::draw(Cat * cat) {
