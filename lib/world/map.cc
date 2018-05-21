@@ -12,9 +12,9 @@ namespace world {
 
     for(int i = 0; i < grid_size_y; i++) {
       for(int j = 0; j < grid_size_x; j++) {
-        if(grid[i][j] == NULL && (i == 0 || i == grid_size_y-1 || j == 0 || j == grid_size_x-1)) {
+        if(i == 0 || i == grid_size_y-1 || j == 0 || j == grid_size_x-1) {
           grid[i][j] = new world::Tile("wall");
-        } else if(grid[i][j] == NULL) {
+        } else {
           grid[i][j] = new world::Tile();
         }
       }
@@ -50,8 +50,8 @@ namespace world {
 
   Map::~Map() {
     for(int i = 0; i < grid_size_y; ++i)
-      delete grid[i];
-    delete grid;
+      delete [] grid[i];
+    delete [] grid;
   }
 
   void Map::create_object(const std::string &obj_name, const int &x, const int &y) {

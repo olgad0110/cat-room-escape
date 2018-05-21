@@ -5,12 +5,14 @@ namespace world {
     size_x = 10;
     size_y = 10;
     collision = false;
+    objects.reserve(10);
   }
 
   Tile::Tile(const std::string &arg) {
     size_x = 10;
     size_y = 10;
     name = arg;
+    objects.reserve(10);
     if(name == "wall") {
       collision = true;
     } else {
