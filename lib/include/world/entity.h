@@ -25,7 +25,7 @@ namespace world {
       bool is_enterable();
       bool is_interactive();
 
-      void draw(const int &pos_x, const int &pos_y);
+      void draw();
   };
 }
 

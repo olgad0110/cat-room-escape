@@ -48,8 +48,6 @@ void Game::loop() {
   bool running = true;
   bool redraw = true;
   bool key[4] = { false, false, false, false };
-  int cat_x = 128;
-  int cat_y = 128;
 
   while (running) {
     ALLEGRO_EVENT event;
@@ -93,10 +91,10 @@ void Game::loop() {
         }
         break;
       case ALLEGRO_EVENT_TIMER:
-        if(key[KEY_UP]) { cat_y -= 8; }
-        if(key[KEY_DOWN]) { cat_y += 8; }
-        if(key[KEY_LEFT]) { cat_x -= 8; }
-        if(key[KEY_RIGHT]) { cat_x += 8; }
+        if(key[KEY_UP]) { world->cat->y -= 8; }
+        if(key[KEY_DOWN]) { world->cat->y += 8; }
+        if(key[KEY_LEFT]) { world->cat->x -= 8; }
+        if(key[KEY_RIGHT]) { world->cat->x += 8; }
 
         redraw = true;
         break;
@@ -113,6 +111,7 @@ void Game::loop() {
       al_clear_to_color(al_map_rgb(0, 0, 0));
 
       world->map->draw();
+      std::cout << "Cat coords: " << world->cat->x << ", " << world->cat->y << std::endl;
 
       al_flip_display();
       redraw = false;

@@ -50,8 +50,8 @@ namespace world {
     create_entity("door", 0, 6);
     create_entity("door", 5, 0);
 
-    world::Entity * obj = new world::CatCharacter(128, 128, cat_bitmap);
-    grid[1][1]->insert_entity(obj);
+    cat = new world::CatCharacter(128, 128, cat_bitmap);
+    grid[1][1]->insert_entity(cat);
   }
 
   Map::~Map() {
@@ -71,16 +71,25 @@ namespace world {
   void Map::draw() {
     al_hold_bitmap_drawing(true);
     draw_tiles();
+    draw_other_entities();
     al_hold_bitmap_drawing(false);
   }
 
   void Map::draw_tiles() {
     for(int i = 0; i < grid_size_y; i++) {
       for(int j = 0; j < grid_size_x; j++) {
-        grid[i][j]->draw(j, i);
+        grid[i][j]->draw();
+      }
+    }
+  }
 
-        for(entity_iterator it = grid[i][j]->entities.begin(); it < grid[i][j]->entities.end(); it++) {
-          (*it)->draw(j, i);
+  void Map::draw_other_entities() {
+    for(int i = 0; i < grid_size_y; i++) {
+      for(int j = 0; j < grid_size_x; j++) {
+        if(grid[i][j]->entities.size() > 0) {
+          for(entity_iterator it = grid[i][j]->entities.begin(); it < grid[i][j]->entities.end(); it++) {
+            (*it)->draw();
+          }
         }
       }
     }

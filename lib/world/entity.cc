@@ -26,9 +26,9 @@ namespace world {
     return interactive;
   }
 
-  void Entity::draw(const int &pos_x, const int &pos_y) {
+  void Entity::draw() {
     if(sprite != NULL) {
-      sprite->draw(pos_x, pos_y);
+      sprite->draw(x, y);
     }
   }
 }

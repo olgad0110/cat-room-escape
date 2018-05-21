@@ -13,7 +13,6 @@
 #include "world/tiles/tile.h"
 #include "world/tiles/wall.h"
 #include "world/tiles/wooden_floor.h"
-
 #include "world/characters/cat.h"
 
 namespace world {
@@ -27,6 +26,7 @@ namespace world {
       world::Tile*** grid;
       ALLEGRO_BITMAP * cat_bitmap;
       ALLEGRO_BITMAP * tiles_bitmap;
+      world::CatCharacter * cat;
 
       Map();
       ~Map();
@@ -35,6 +35,7 @@ namespace world {
 
       void draw();
       void draw_tiles();
+      void draw_other_entities();
   };
 }
 

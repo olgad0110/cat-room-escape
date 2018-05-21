@@ -12,6 +12,6 @@ namespace world {
   Sprite::~Sprite() {}
 
   void Sprite::draw(const int &pos_x, const int &pos_y) {
-    al_draw_bitmap_region(bitmap, x, y, size_x, size_y, size_x*pos_x, size_y*pos_y, 0);
+    al_draw_bitmap_region(bitmap, x, y, size_x, size_y, pos_x, pos_y, 0);
   }
 }

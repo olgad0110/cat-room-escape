@@ -3,21 +3,16 @@
 
 #include <stdlib.h>
 #include <string>
-#include <iostream>
-#include <vector>
-#include "world/entity.h"
-#include "world/tiles/tile.h"
+
 #include "world/map.h"
+#include "world/characters/cat.h"
 
 namespace world {
-  class Map;
-  class Entity;
-  class Tile;
-
   class World {
     public:
       std::string name;
       world::Map * map;
+      world::CatCharacter * cat;
 
       World(const std::string &arg);
       ~World();
