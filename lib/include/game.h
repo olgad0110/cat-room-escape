@@ -21,8 +21,8 @@ class Game {
     ALLEGRO_DISPLAY * display;
     ALLEGRO_TIMER * timer;
     ALLEGRO_EVENT_QUEUE * event_queue;
-    ALLEGRO_BITMAP * tiles_bitmap;
-    ALLEGRO_BITMAP * cat_bitmap;
+    // ALLEGRO_BITMAP * tiles_bitmap;
+    // ALLEGRO_BITMAP * cat_bitmap;
 
     int state;
     DLHandler * cat_handler;
@@ -33,8 +33,10 @@ class Game {
     Game(const float &a_fps, const int &a_display_x, const int &a_display_y);
     ~Game();
 
-    void initialize_allegro();
     void loop();
+
+  private:
+    void initialize_allegro();
     void shutdown_allegro();
 };
 

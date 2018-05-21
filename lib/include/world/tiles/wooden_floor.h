@@ -9,7 +9,7 @@
 namespace world {
   class WoodenFloorTile : public Tile {
     public:
-      WoodenFloorTile(const int &a_x, const int &a_y);
+      WoodenFloorTile(const int &a_x, const int &a_y, ALLEGRO_BITMAP * bitmap);
   };
 }
 

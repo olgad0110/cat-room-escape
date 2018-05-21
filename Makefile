@@ -25,7 +25,8 @@ OBJECTS = bin/main.o \
 	bin/world.o \
 	bin/tile.o \
 	bin/wall_tile.o \
-	bin/wooden_floor_tile.o
+	bin/wooden_floor_tile.o \
+	bin/sprite.o
 
 all:
 	g++ -c -o bin/entity.o lib/world/entity.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
@@ -34,6 +35,7 @@ all:
 	g++ -c -o bin/wooden_floor_tile.o lib/world/tiles/wooden_floor.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/world.o lib/world/world.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/map.o lib/world/map.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
+	g++ -c -o bin/sprite.o lib/world/sprite.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	# g++ -c -o bin/cat.o lib/cat.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/dlhandler.o lib/dlhandler.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/manager.o lib/manager.cc ${HLOOKUPFLAGS} ${CXXFLAGS}

@@ -5,6 +5,9 @@ namespace world {
     grid_size_x = 11;
     grid_size_y = 11;
 
+    tiles_bitmap = al_load_bitmap("images/tiles.png");
+    cat_bitmap = al_load_bitmap("images/cat.png");
+
     grid = new world::Tile**[grid_size_y];
     for(int i = 0; i < grid_size_y; ++i) {
       grid[i] = new world::Tile*[grid_size_x];
@@ -12,10 +15,10 @@ namespace world {
 
     for(int i = 0; i < grid_size_y; i++) {
       for(int j = 0; j < grid_size_x; j++) {
-        if(i == 0 || i == grid_size_y-1 || j == 0 || j == grid_size_x-1) {
-          grid[i][j] = new world::WallTile(j*TILE_SIZE, i*TILE_SIZE);
+        if((i == 0 || i == grid_size_y-1 || j == 0 || j == grid_size_x-1) && !((j == 5 && i == 0) || (j == 0 && i == 6))) {
+          grid[i][j] = new world::WallTile(j*TILE_SIZE, i*TILE_SIZE, tiles_bitmap);
         } else {
-          grid[i][j] = new world::WoodenFloorTile(j*TILE_SIZE, i*TILE_SIZE);
+          grid[i][j] = new world::WoodenFloorTile(j*TILE_SIZE, i*TILE_SIZE, tiles_bitmap);
         }
       }
     }
@@ -52,11 +55,30 @@ namespace world {
     for(int i = 0; i < grid_size_y; ++i)
       delete [] grid[i];
     delete [] grid;
+
+    al_destroy_bitmap(tiles_bitmap);
+    al_destroy_bitmap(cat_bitmap);
   }
 
   void Map::create_entity(const std::string &obj_name, const int &x, const int &y) {
     world::Entity * obj = new world::Entity(obj_name);
     grid[y][x]->insert_entity(obj);
+  }
+
+  void Map::draw() {
+    al_hold_bitmap_drawing(true);
+    draw_tiles();
+    al_hold_bitmap_drawing(false);
+
+    // al_draw_bitmap_region(cat_bitmap, 128, 0, 128, 128, cat_x, cat_y, 0);
+  }
+
+  void Map::draw_tiles() {
+    for(int i = 0; i < grid_size_y; i++) {
+      for(int j = 0; j < grid_size_x; j++) {
+        grid[i][j]->sprite->draw(j, i);
+      }
+    }
   }
 
   // std::string Map::draw(Cat * cat) {

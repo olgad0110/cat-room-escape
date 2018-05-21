@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string>
 
+#include "world/sprite.h"
+
 namespace world {
   class Entity {
     public:
@@ -14,8 +16,8 @@ namespace world {
       int y;
       int size_x;
       int size_y;
+      Sprite * sprite;
 
-    public:
       Entity(const std::string &a_name, const bool &a_int, const bool &a_ent, const int &a_x, const int &a_y, const int &a_size_x, const int &a_size_y);
       Entity(const std::string &a_name);
       virtual ~Entity();

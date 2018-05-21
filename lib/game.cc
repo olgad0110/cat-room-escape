@@ -6,6 +6,7 @@ Game::Game(const float &a_fps, const int &a_display_x, const int &a_display_y) {
   display_y = a_display_y;
 
   state = 0;
+  initialize_allegro();
   world = new world::World("Cat room");
   // cat_handler = new DLHandler("bin/cat.so");
   // manager = new Manager();
@@ -13,6 +14,7 @@ Game::Game(const float &a_fps, const int &a_display_x, const int &a_display_y) {
 
 Game::~Game() {
   delete world;
+  shutdown_allegro();
   // cat_handler->destroy(cat);
   // delete cat_handler;
 }
@@ -30,9 +32,6 @@ void Game::initialize_allegro() {
   al_register_event_source(event_queue, al_get_display_event_source(display));
   al_register_event_source(event_queue, al_get_timer_event_source(timer));
   al_register_event_source(event_queue, al_get_keyboard_event_source());
-
-  tiles_bitmap = al_load_bitmap("images/tiles.png");
-  cat_bitmap = al_load_bitmap("images/cat.png");
 
   al_start_timer(timer);
   al_clear_to_color(al_map_rgb(0, 0, 0));
@@ -73,8 +72,6 @@ void Game::shutdown_allegro() {
   al_destroy_timer(timer);
   al_destroy_display(display);
   al_destroy_event_queue(event_queue);
-  al_destroy_bitmap(tiles_bitmap);
-  al_destroy_bitmap(cat_bitmap);
 }
 
 void Game::loop() {
@@ -145,17 +142,7 @@ void Game::loop() {
     if (redraw && al_is_event_queue_empty(event_queue)) {
       al_clear_to_color(al_map_rgb(0, 0, 0));
 
-      for(int i = 0; i < world->map->grid_size_y; i++) {
-        for(int j = 0; j < world->map->grid_size_x; j++) {
-          if(world->map->grid[i][j]->name == "wall") {
-            al_draw_bitmap_region(tiles_bitmap, 0, 0, 128, 128, 128*j, 128*i, 0);
-          } else if(world->map->grid[i][j]->name == "wooden_floor") {
-            al_draw_bitmap_region(tiles_bitmap, 128, 0, 128, 128, 128*j, 128*i, 0);
-          }
-        }
-      }
-
-      al_draw_bitmap_region(cat_bitmap, 128, 0, 128, 128, cat_x, cat_y, 0);
+      world->map->draw();
 
       al_flip_display();
       redraw = false;
