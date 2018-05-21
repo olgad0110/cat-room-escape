@@ -6,7 +6,10 @@
 #include <iostream>
 #include <vector>
 #include "world/entity.h"
-#include "world/tile.h"
+#include "world/tiles/tile.h"
+#include "world/tiles/wall.h"
+#include "world/tiles/wooden_floor.h"
+
 #include "cat.h"
 
 class Cat;
@@ -25,9 +28,9 @@ namespace world {
       ~Map();
 
       void create_entity(const std::string &obj_name, const int &x, const int &y);
-      std::string draw(Cat * cat);
-    private:
-      std::string draw_horizontal_border(const int &char_length);
+      // std::string draw(Cat * cat);
+    // private:
+      // std::string draw_horizontal_border(const int &char_length);
   };
 }
 

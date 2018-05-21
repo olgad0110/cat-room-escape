@@ -1,29 +1,27 @@
-#ifndef WORLD_OBJECT_H
-#define WORLD_OBJECT_H
+#ifndef WORLD_ENTITY_H
+#define WORLD_ENTITY_H
 
 #include <stdlib.h>
 #include <string>
-#include <sstream>
-#include <iostream>
-#include <vector>
-#include "cat.h"
-
-class Cat;
 
 namespace world {
   class Entity {
     public:
-      std::string obj_name;
-      bool collision;
+      std::string name;
+      bool interactive;
+      bool enterable;
+      int x;
+      int y;
+      int size_x;
+      int size_y;
 
-      Entity();
-      Entity(const std::string &arg_n);
-      Entity(const std::string &arg_n, const bool &arg_c);
-      ~Entity();
+    public:
+      Entity(const std::string &a_name, const bool &a_int, const bool &a_ent, const int &a_x, const int &a_y, const int &a_size_x, const int &a_size_y);
+      Entity(const std::string &a_name);
+      virtual ~Entity();
 
-      std::string describe();
-      std::string draw(const int &char_length, const int &grid_size_x, const int &x, const int &y, const bool &draw_cat, Cat * cat);
-      bool can_be_entered();
+      bool is_enterable();
+      bool is_interactive();
   };
 }
 

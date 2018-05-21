@@ -149,7 +149,7 @@ void Game::loop() {
         for(int j = 0; j < world->map->grid_size_x; j++) {
           if(world->map->grid[i][j]->name == "wall") {
             al_draw_bitmap_region(tiles_bitmap, 0, 0, 128, 128, 128*j, 128*i, 0);
-          } else if(world->map->grid[i][j]->name == "") {
+          } else if(world->map->grid[i][j]->name == "wooden_floor") {
             al_draw_bitmap_region(tiles_bitmap, 128, 0, 128, 128, 128*j, 128*i, 0);
           }
         }

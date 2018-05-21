@@ -1,26 +1,27 @@
 #include "world/entity.h"
 
 namespace world {
-  Entity::Entity() {
-    collision = false;
+  Entity::Entity(const std::string &a_name, const bool &a_int, const bool &a_ent, const int &a_x, const int &a_y, const int &a_size_x, const int &a_size_y) {
+    name = a_name;
+    interactive = a_int;
+    enterable = a_ent;
+    x = a_x;
+    y = a_y;
+    size_x = a_size_x;
+    size_y = a_size_y;
   }
+
   Entity::~Entity() {}
 
-  Entity::Entity(const std::string &arg_n) {
-    collision = true;
-    obj_name = arg_n;
+  Entity::Entity(const std::string &a_name) {
+    name = a_name;
   }
 
-  Entity::Entity(const std::string &arg_n, const bool &arg_c) {
-    collision = arg_c;
-    obj_name = arg_n;
+  bool Entity::is_enterable() {
+    return enterable;
   }
 
-  std::string Entity::describe() {
-    return "This is " + obj_name;
-  }
-
-  bool Entity::can_be_entered() {
-    return !collision;
+  bool Entity::is_interactive() {
+    return interactive;
   }
 }

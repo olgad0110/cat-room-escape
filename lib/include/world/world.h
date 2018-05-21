@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 #include "world/entity.h"
-#include "world/tile.h"
+#include "world/tiles/tile.h"
 #include "world/map.h"
 
 namespace world {

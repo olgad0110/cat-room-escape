@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 #include "world/entity.h"
-#include "world/tile.h"
+#include "world/tiles/tile.h"
 #include "world/world.h"
 
 namespace world {

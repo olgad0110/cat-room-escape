@@ -13,9 +13,9 @@ namespace world {
     for(int i = 0; i < grid_size_y; i++) {
       for(int j = 0; j < grid_size_x; j++) {
         if(i == 0 || i == grid_size_y-1 || j == 0 || j == grid_size_x-1) {
-          grid[i][j] = new world::Tile("wall");
+          grid[i][j] = new world::WallTile(j*TILE_SIZE, i*TILE_SIZE);
         } else {
-          grid[i][j] = new world::Tile();
+          grid[i][j] = new world::WoodenFloorTile(j*TILE_SIZE, i*TILE_SIZE);
         }
       }
     }
@@ -59,34 +59,34 @@ namespace world {
     grid[y][x]->insert_entity(obj);
   }
 
-  std::string Map::draw(Cat * cat) {
-    int char_length = 18;
-    bool draw_cat;
-    std::string result = "";
+  // std::string Map::draw(Cat * cat) {
+  //   int char_length = 18;
+  //   bool draw_cat;
+  //   std::string result = "";
 
-    result += draw_horizontal_border(char_length);
+  //   result += draw_horizontal_border(char_length);
 
-    for(int i = 0; i < grid_size_y; i++) {
-      for(int j = 0; j < grid_size_x; j++) {
-        if(cat->pos_x == j && cat->pos_y == i) { draw_cat = true; } else { draw_cat = false; }
-        result += "| " + grid[i][j]->draw(char_length, grid_size_x, j, i, draw_cat, cat);
-      }
-      result += "|\n";
-      result += draw_horizontal_border(char_length);
-    }
-    return result;
-  }
+  //   for(int i = 0; i < grid_size_y; i++) {
+  //     for(int j = 0; j < grid_size_x; j++) {
+  //       if(cat->pos_x == j && cat->pos_y == i) { draw_cat = true; } else { draw_cat = false; }
+  //       result += "| " + grid[i][j]->draw(char_length, grid_size_x, j, i, draw_cat, cat);
+  //     }
+  //     result += "|\n";
+  //     result += draw_horizontal_border(char_length);
+  //   }
+  //   return result;
+  // }
 
-  std::string Map::draw_horizontal_border(const int &char_length) {
-    std::string r = "";
-    for(int j = 0; j < grid_size_x; j++) {
-      if(j == 0 || j == grid_size_x-1) {
-        r = r + " " + std::string(char_length/3, '-');
-      } else {
-        r = r + " " + std::string(char_length, '-');
-      }
-    }
-    r = r + "\n";
-    return r;
-  }
+  // std::string Map::draw_horizontal_border(const int &char_length) {
+  //   std::string r = "";
+  //   for(int j = 0; j < grid_size_x; j++) {
+  //     if(j == 0 || j == grid_size_x-1) {
+  //       r = r + " " + std::string(char_length/3, '-');
+  //     } else {
+  //       r = r + " " + std::string(char_length, '-');
+  //     }
+  //   }
+  //   r = r + "\n";
+  //   return r;
+  // }
 }

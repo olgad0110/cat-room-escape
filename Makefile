@@ -16,16 +16,29 @@ ALLEGRO = -lallegro -lallegro_main -lallegro_primitives -lallegro_image -lallegr
 # ${CXX} -o ${OUT_DIR}/cat.so ${IN_DIR}/cat.cc ${IN_DIR}/world/entities/entity.cc -shared -fPIC ${CXXFLAGS}
 # ${CXX} -o ${OUT_DIR}/main ${SOURCE_FILES} -ldl ${CXXFLAGS}
 
+OBJECTS = bin/main.o \
+	bin/game.o \
+	bin/manager.o \
+	bin/dlhandler.o \
+	bin/map.o \
+	bin/entity.o \
+	bin/world.o \
+	bin/tile.o \
+	bin/wall_tile.o \
+	bin/wooden_floor_tile.o
+
 all:
 	g++ -c -o bin/entity.o lib/world/entity.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/tile.o lib/world/tile.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
+	g++ -c -o bin/tile.o lib/world/tiles/tile.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
+	g++ -c -o bin/wall_tile.o lib/world/tiles/wall.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
+	g++ -c -o bin/wooden_floor_tile.o lib/world/tiles/wooden_floor.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/world.o lib/world/world.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/map.o lib/world/map.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/cat.o lib/cat.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
+	# g++ -c -o bin/cat.o lib/cat.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/dlhandler.o lib/dlhandler.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/manager.o lib/manager.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/game.o lib/game.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/main.o lib/main.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 
-	g++ -o bin/cat.so bin/cat.o bin/entity.o bin/tile.o -shared -fPIC ${CXXFLAGS}
-	g++ -o bin/main bin/main.o bin/game.o bin/manager.o bin/dlhandler.o bin/map.o bin/entity.o bin/world.o bin/tile.o -ldl ${CXXFLAGS} ${ALLEGRO}
+	# g++ -o bin/cat.so bin/cat.o bin/entity.o bin/tile.o -shared -fPIC ${CXXFLAGS}
+	g++ -o bin/main ${OBJECTS} -ldl ${CXXFLAGS} ${ALLEGRO}
