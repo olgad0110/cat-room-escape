@@ -20,6 +20,7 @@ namespace world {
       ~Sprite();
 
       void draw(const int &pos_x, const int &pos_y);
+      void draw(const int &pos_x, const int &pos_y, const int &x, const int &y);
   };
 }
 

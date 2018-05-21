@@ -11,6 +11,8 @@ void Manager::move(world::Character * character, const int &x, const int &y, con
   int new_y = character->y + y * speed;
 
   if(can_move(character, new_x, new_y)) {
+    int old_x = character->x;
+    int old_y = character->y;
     int old_tile_x = character->tile_x();
     int old_tile_y = character->tile_y();
 
@@ -27,6 +29,8 @@ void Manager::move(world::Character * character, const int &x, const int &y, con
         }
       }
     }
+
+    character->look_at(old_x, old_y, new_x, new_y);
   }
 }
 
