@@ -2,6 +2,7 @@ MKDIR = mkdir -p
 CXX = g++
 CXXFLAGS = -Wall -Werror
 HLOOKUPFLAGS = -I./lib/include
+ALLEGRO = -lallegro -lallegro_main -lallegro_primitives -lallegro_image -lallegro_dialog -lallegro_audio -lallegro_acodec
 
 # OUT_DIR = bin
 # IN_DIR = lib
@@ -27,4 +28,4 @@ all:
 	g++ -c -o bin/main.o lib/main.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 
 	g++ -o bin/cat.so bin/cat.o bin/object.o bin/tile.o -shared -fPIC ${CXXFLAGS}
-	g++ -o bin/main bin/main.o bin/game.o bin/manager.o bin/dlhandler.o bin/map.o bin/object.o bin/world.o bin/tile.o -ldl ${CXXFLAGS}
+	g++ -o bin/main bin/main.o bin/game.o bin/manager.o bin/dlhandler.o bin/map.o bin/object.o bin/world.o bin/tile.o -ldl ${CXXFLAGS} ${ALLEGRO}
