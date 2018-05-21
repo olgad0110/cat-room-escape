@@ -49,6 +49,9 @@ namespace world {
     create_entity("shelf", 9, 8);
     create_entity("door", 0, 6);
     create_entity("door", 5, 0);
+
+    world::Entity * obj = new world::CatCharacter(128, 128, cat_bitmap);
+    grid[1][1]->insert_entity(obj);
   }
 
   Map::~Map() {
@@ -69,46 +72,17 @@ namespace world {
     al_hold_bitmap_drawing(true);
     draw_tiles();
     al_hold_bitmap_drawing(false);
-
-    // al_draw_bitmap_region(cat_bitmap, 128, 0, 128, 128, cat_x, cat_y, 0);
   }
 
   void Map::draw_tiles() {
     for(int i = 0; i < grid_size_y; i++) {
       for(int j = 0; j < grid_size_x; j++) {
-        grid[i][j]->sprite->draw(j, i);
+        grid[i][j]->draw(j, i);
+
+        for(entity_iterator it = grid[i][j]->entities.begin(); it < grid[i][j]->entities.end(); it++) {
+          (*it)->draw(j, i);
+        }
       }
     }
   }
-
-  // std::string Map::draw(Cat * cat) {
-  //   int char_length = 18;
-  //   bool draw_cat;
-  //   std::string result = "";
-
-  //   result += draw_horizontal_border(char_length);
-
-  //   for(int i = 0; i < grid_size_y; i++) {
-  //     for(int j = 0; j < grid_size_x; j++) {
-  //       if(cat->pos_x == j && cat->pos_y == i) { draw_cat = true; } else { draw_cat = false; }
-  //       result += "| " + grid[i][j]->draw(char_length, grid_size_x, j, i, draw_cat, cat);
-  //     }
-  //     result += "|\n";
-  //     result += draw_horizontal_border(char_length);
-  //   }
-  //   return result;
-  // }
-
-  // std::string Map::draw_horizontal_border(const int &char_length) {
-  //   std::string r = "";
-  //   for(int j = 0; j < grid_size_x; j++) {
-  //     if(j == 0 || j == grid_size_x-1) {
-  //       r = r + " " + std::string(char_length/3, '-');
-  //     } else {
-  //       r = r + " " + std::string(char_length, '-');
-  //     }
-  //   }
-  //   r = r + "\n";
-  //   return r;
-  // }
 }

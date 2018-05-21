@@ -36,36 +36,6 @@ void Game::initialize_allegro() {
   al_start_timer(timer);
   al_clear_to_color(al_map_rgb(0, 0, 0));
   al_flip_display();
-
-  // std::string name;
-  // int icon_number;
-  // std::string icon;
-  // std::string input;
-
-  // std::cout << "Welcome to cat room escape!" << std::endl << std::endl;
-  // std::cout << "What's your cat name? ";
-  // std::cin >> name;
-
-  // std::cout << "What's your cat icon? 1: 🐈   2: 🐅   3: 🐆   ";
-  // std::cin >> icon_number;
-
-  // if(icon_number == 1) { icon = "🐈"; } else
-  // if(icon_number == 2) { icon = "🐅"; } else
-  // if(icon_number == 3) { icon = "🐆"; } else { icon = "🐈"; }
-
-  // cat = cat_handler->create(name, icon);
-
-  // std::cout << std::endl << "Do you want to play? [Y/n] ";
-  // do {
-  //   std::cin >> input;
-  //   if(input == "n") {
-  //     state = 0;
-  //   } else if(input == "Y") {
-  //     state = 1;
-  //   } else {
-  //     std::cout << "[Y/n]" << std::endl;
-  //   }
-  // } while(!(input == "Y" || input == "n"));
 }
 
 void Game::shutdown_allegro() {
@@ -148,35 +118,4 @@ void Game::loop() {
       redraw = false;
     }
   }
-
-  // std::string input;
-  // std::string printable;
-
-  // while(state == 1) {
-  //   system("clear");
-
-  //   std::cout << world->map->draw(cat);
-
-  //   std::cout << std::endl << printable << std::endl;
-  //   printable = "";
-
-  //   std::cout << std::endl << "$ ";
-  //   std::cin >> input;
-
-  //   if(input == "q") {
-  //     state = 0;
-  //   } else if(input == "w") {
-  //     cat->go_up(world);
-  //   } else if(input == "s") {
-  //     cat->go_down(world);
-  //   } else if(input == "a") {
-  //     cat->go_left(world);
-  //   } else if(input == "d") {
-  //     cat->go_right(world);
-  //   } else if(input == "m") {
-  //     printable = cat->meow();
-  //   } else if(input == "r") {
-  //     printable = cat_handler->reload();
-  //   }
-  // }
 }

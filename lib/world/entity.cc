@@ -9,6 +9,7 @@ namespace world {
     y = a_y;
     size_x = a_size_x;
     size_y = a_size_y;
+    sprite = NULL;
   }
 
   Entity::~Entity() {}
@@ -23,5 +24,11 @@ namespace world {
 
   bool Entity::is_interactive() {
     return interactive;
+  }
+
+  void Entity::draw(const int &pos_x, const int &pos_y) {
+    if(sprite != NULL) {
+      sprite->draw(pos_x, pos_y);
+    }
   }
 }

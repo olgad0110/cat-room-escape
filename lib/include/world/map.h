@@ -14,6 +14,8 @@
 #include "world/tiles/wall.h"
 #include "world/tiles/wooden_floor.h"
 
+#include "world/characters/cat.h"
+
 namespace world {
   class Entity;
   class Tile;
@@ -33,9 +35,6 @@ namespace world {
 
       void draw();
       void draw_tiles();
-      // std::string draw(Cat * cat);
-    // private:
-      // std::string draw_horizontal_border(const int &char_length);
   };
 }
 

@@ -26,7 +26,9 @@ OBJECTS = bin/main.o \
 	bin/tile.o \
 	bin/wall_tile.o \
 	bin/wooden_floor_tile.o \
-	bin/sprite.o
+	bin/sprite.o \
+	bin/character.o \
+	bin/cat.o
 
 all:
 	g++ -c -o bin/entity.o lib/world/entity.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
@@ -36,7 +38,8 @@ all:
 	g++ -c -o bin/world.o lib/world/world.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/map.o lib/world/map.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/sprite.o lib/world/sprite.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	# g++ -c -o bin/cat.o lib/cat.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
+	g++ -c -o bin/character.o lib/world/characters/character.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
+	g++ -c -o bin/cat.o lib/world/characters/cat.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/dlhandler.o lib/dlhandler.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/manager.o lib/manager.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
 	g++ -c -o bin/game.o lib/game.cc ${HLOOKUPFLAGS} ${CXXFLAGS}

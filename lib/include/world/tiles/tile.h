@@ -16,12 +16,12 @@ namespace world {
   class Tile : public Entity {
     public:
       entity_vector entities;
+      bool movable;
 
       Tile(const std::string &a_name, const bool &a_int, const bool &a_ent, const int &a_x, const int &a_y);
       ~Tile();
 
       void insert_entity(world::Entity * obj);
-      // std::string draw(const int &char_length, const int &grid_size_x, const int &x, const int &y, const bool &draw_cat, Cat * cat);
   };
 }
 
