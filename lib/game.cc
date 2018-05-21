@@ -48,6 +48,7 @@ void Game::loop() {
   bool running = true;
   bool redraw = true;
   bool key[4] = { false, false, false, false };
+  int speed = 4;
 
   while (running) {
     ALLEGRO_EVENT event;
@@ -67,6 +68,21 @@ void Game::loop() {
             break;
           case ALLEGRO_KEY_RIGHT:
             key[KEY_RIGHT] = true;
+            break;
+          case ALLEGRO_KEY_W:
+            key[KEY_UP] = true;
+            break;
+          case ALLEGRO_KEY_S:
+            key[KEY_DOWN] = true;
+            break;
+          case ALLEGRO_KEY_A:
+            key[KEY_LEFT] = true;
+            break;
+          case ALLEGRO_KEY_D:
+            key[KEY_RIGHT] = true;
+            break;
+          case ALLEGRO_KEY_LSHIFT:
+            speed = 16;
             break;
         }
         break;
@@ -88,13 +104,28 @@ void Game::loop() {
           case ALLEGRO_KEY_RIGHT:
             key[KEY_RIGHT] = false;
             break;
+          case ALLEGRO_KEY_W:
+            key[KEY_UP] = false;
+            break;
+          case ALLEGRO_KEY_S:
+            key[KEY_DOWN] = false;
+            break;
+          case ALLEGRO_KEY_A:
+            key[KEY_LEFT] = false;
+            break;
+          case ALLEGRO_KEY_D:
+            key[KEY_RIGHT] = false;
+            break;
+          case ALLEGRO_KEY_LSHIFT:
+            speed = 8;
+            break;
         }
         break;
       case ALLEGRO_EVENT_TIMER:
-        if(key[KEY_UP]) { manager->move(world->cat, 0, -1, 8); }
-        if(key[KEY_DOWN]) { manager->move(world->cat, 0, 1, 8); }
-        if(key[KEY_LEFT]) { manager->move(world->cat, -1, 0, 8); }
-        if(key[KEY_RIGHT]) { manager->move(world->cat, 1, 0, 8); }
+        if(key[KEY_UP]) { manager->move(world->cat, 0, -1, speed); }
+        if(key[KEY_DOWN]) { manager->move(world->cat, 0, 1, speed); }
+        if(key[KEY_LEFT]) { manager->move(world->cat, -1, 0, speed); }
+        if(key[KEY_RIGHT]) { manager->move(world->cat, 1, 0, speed); }
 
         redraw = true;
         break;
