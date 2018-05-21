@@ -6,4 +6,12 @@ namespace world {
   }
 
   Character::~Character() {}
+
+  int Character::tile_x() {
+    return x / TILE_SIZE;
+  }
+
+  int Character::tile_y() {
+    return y / TILE_SIZE;
+  }
 }

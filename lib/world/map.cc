@@ -15,7 +15,7 @@ namespace world {
 
     for(int i = 0; i < grid_size_y; i++) {
       for(int j = 0; j < grid_size_x; j++) {
-        if((i == 0 || i == grid_size_y-1 || j == 0 || j == grid_size_x-1) && !((j == 5 && i == 0) || (j == 0 && i == 6))) {
+        if((i == 0 || i == grid_size_y-1 || j == 0 || j == grid_size_x-1) && !((j == 1 && i == 0) || (j == 0 && i == 6) || (j == 10 && i == 4) || (j == 8 && i == 10))) {
           grid[i][j] = new world::WallTile(j*TILE_SIZE, i*TILE_SIZE, tiles_bitmap);
         } else {
           grid[i][j] = new world::WoodenFloorTile(j*TILE_SIZE, i*TILE_SIZE, tiles_bitmap);
@@ -48,7 +48,9 @@ namespace world {
     create_entity("shelf", 8, 9);
     create_entity("shelf", 9, 8);
     create_entity("door", 0, 6);
-    create_entity("door", 5, 0);
+    create_entity("door", 1, 0);
+    create_entity("door", 10, 4);
+    create_entity("door", 8, 10);
 
     cat = new world::CatCharacter(128, 128, cat_bitmap);
     grid[1][1]->insert_entity(cat);
@@ -71,6 +73,9 @@ namespace world {
   void Map::draw() {
     al_hold_bitmap_drawing(true);
     draw_tiles();
+    al_hold_bitmap_drawing(false);
+
+    al_hold_bitmap_drawing(true);
     draw_other_entities();
     al_hold_bitmap_drawing(false);
   }

@@ -8,8 +8,8 @@ Game::Game(const float &a_fps, const int &a_display_x, const int &a_display_y) {
   state = 0;
   initialize_allegro();
   world = new world::World("Cat room");
+  manager = new Manager(world);
   // cat_handler = new DLHandler("bin/cat.so");
-  // manager = new Manager();
 }
 
 Game::~Game() {
@@ -91,10 +91,10 @@ void Game::loop() {
         }
         break;
       case ALLEGRO_EVENT_TIMER:
-        if(key[KEY_UP]) { world->cat->y -= 8; }
-        if(key[KEY_DOWN]) { world->cat->y += 8; }
-        if(key[KEY_LEFT]) { world->cat->x -= 8; }
-        if(key[KEY_RIGHT]) { world->cat->x += 8; }
+        if(key[KEY_UP]) { manager->move(world->cat, 0, -1, 8); }
+        if(key[KEY_DOWN]) { manager->move(world->cat, 0, 1, 8); }
+        if(key[KEY_LEFT]) { manager->move(world->cat, -1, 0, 8); }
+        if(key[KEY_RIGHT]) { manager->move(world->cat, 1, 0, 8); }
 
         redraw = true;
         break;
@@ -103,7 +103,7 @@ void Game::loop() {
         redraw = false;
         break;
       default:
-        std::cout << "Unsupported event received: " << event.type;
+        // std::cout << "Unsupported event received: " << event.type << std::endl;
         break;
     }
 
@@ -111,7 +111,6 @@ void Game::loop() {
       al_clear_to_color(al_map_rgb(0, 0, 0));
 
       world->map->draw();
-      std::cout << "Cat coords: " << world->cat->x << ", " << world->cat->y << std::endl;
 
       al_flip_display();
       redraw = false;
