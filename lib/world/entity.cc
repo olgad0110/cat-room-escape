@@ -1,4 +1,4 @@
-#include "entity.h"
+#include "world/entity.h"
 
 namespace world {
   Entity::Entity() {

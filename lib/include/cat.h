@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <string>
 #include <iostream>
-#include "entity.h"
-#include "tile.h"
-#include "world.h"
+#include "world/entity.h"
+#include "world/tile.h"
+#include "world/world.h"
 
 namespace world {
   class World;

@@ -5,8 +5,8 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "entity.h"
-#include "tile.h"
+#include "world/entity.h"
+#include "world/tile.h"
 #include "cat.h"
 
 class Cat;

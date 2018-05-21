@@ -5,7 +5,7 @@
 #include "allegro5/allegro_image.h"
 
 #include "dlhandler.h"
-#include "world.h"
+#include "world/world.h"
 #include "manager.h"
 
 enum pushed_keys {

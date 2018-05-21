@@ -5,9 +5,9 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "entity.h"
-#include "tile.h"
-#include "map.h"
+#include "world/entity.h"
+#include "world/tile.h"
+#include "world/map.h"
 
 namespace world {
   class Map;

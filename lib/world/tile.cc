@@ -1,4 +1,4 @@
-#include "tile.h"
+#include "world/tile.h"
 
 namespace world {
   Tile::Tile() {
