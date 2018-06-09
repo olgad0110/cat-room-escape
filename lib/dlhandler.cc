@@ -25,7 +25,7 @@ std::string DLHandler::reload() {
 }
 
 void DLHandler::compile() {
-  system("./bin/dlcompile.sh");
+  system("./dlcompile.sh");
 }
 
 bool DLHandler::load_dl(const char * path) {

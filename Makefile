@@ -20,7 +20,7 @@ SO_OBJ_FILES = $(OBJ)/cat.o \
 
 # defaults #
 
-BUILD = release
+BUILD = debug
 ARCH = x86
 
 # compiler options #
@@ -33,21 +33,32 @@ ifeq ($(BUILD),debug)
 	CXXFLAGS += -g
 endif
 
+ifeq ($(BUILD),release)
+	RDIR = ./release
+	BIN = $(RDIR)
+endif
+
 #-----------------------#
 #        targets        #
 #-----------------------#
 
 .PHONY: all
 all:
+	@echo "#------ Creating $(BUILD) build in $(BIN) directory... ------#"
+	mkdir -p $(BIN) $(OBJ)
 	make main
 	make slibs
+	cp ./dlcompile.sh $(BIN)/
+	@echo "#------ Compilation done. Run $(BIN)/main to start ------#"
 
 .PHONY: main
 main:
+	@echo "#------ Compiling main... ------#"
 	make $(BIN)/main
 
 .PHONY: slibs
 slibs:
+	@echo "#------ Compiling shared libs... ------#"
 	make $(BIN)/cat.so
 
 .PHONY: help
@@ -56,21 +67,23 @@ help:
 	@echo "  make [target] [OPTIONS]"
 	@echo
 	@echo "  targets:"
-	@echo "     all       Builds application and shared libs (default)"
-	@echo "     main      Builds application"
-	@echo "     slibs     Builds shared libs for application"
-	@echo "     clean     Cleans project build"
-	@echo "     help      Prints this message"
+	@echo "     all              Builds application and shared libs (default)"
+	@echo "     main             Builds application"
+	@echo "     slibs            Builds shared libs for application"
+	@echo "     clean            Cleans project build"
+	@echo "     help             Prints this message"
 	@echo
 	@echo "  options:"
-	@echo "     BUILD=release   Builds a release build (default)"
-	@echo "     BUILD=debug     Builds a debug build"
-	@echo "     ARCH=x86        Builds a x86 build (default)"
-	@echo "     ARCH=arm        Builds an arm build"
+	@echo "     BUILD=debug      Builds a debug build (default)"
+	@echo "     BUILD=release    Builds a release build"
+	@echo "     ARCH=x86         Builds a x86 build (default)"
+	@echo "     ARCH=arm         Builds an arm build"
+	@echo "     RDIR=release     Creates release in given directory (default: release)"
 
 .PHONY: clean
 clean:
-	rm -f $(OBJ)/*.o $(BIN)/main $(BIN)/cat.so
+	rm -f $(OBJ)/* $(BIN)/*
+	rmdir $(OBJ) $(BIN)
 
 #-----------------------#
 #         files         #
