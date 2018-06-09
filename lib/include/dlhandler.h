@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 #include <dlfcn.h>
-#include "cat.h"
+#include "old_cat.h"
 
 class DLHandler {
   public:
