@@ -15,7 +15,7 @@ Install Xcode for g++, install allegro via homebrew.
 $ brew install allegro
 ```
 
-### Linux (ubuntu/mint)
+### Linux (ubuntu/mint/raspbian)
 
 Install required libs:
 

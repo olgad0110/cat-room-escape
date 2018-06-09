@@ -27,7 +27,7 @@ SO_OBJ_FILES = $(OBJ)/cat.o \
 	$(OBJ)/entity.o \
 	$(OBJ)/tile.o
 
-ALLEGRO = `pkg-config --libs allegro-5 allegro_main-5 allegro_primitives-5 allegro_image-5 allegro_dialog-5 allegro_audio-5 allegro_acodec-5`
+ALLEGRO = `pkg-config --libs "$$(pkg-config --list-all | grep allegro | awk '{ print $$1 }')"`
 
 # defaults #
 
