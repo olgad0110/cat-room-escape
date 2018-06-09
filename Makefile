@@ -1,49 +1,123 @@
-MKDIR = mkdir -p
-CXX = g++
-CXXFLAGS = -Wall -Werror
-HLOOKUPFLAGS = -I./lib/include
+#-----------------------#
+#       variables       #
+#-----------------------#
+
+# directories and files #
+
+OBJ = ./obj
+BIN = ./bin
+LIB = ./lib
+LIB_H = ./lib/include
+
+OBJ_FILES = $(OBJ)/main.o \
+  $(OBJ)/game.o \
+  $(OBJ)/manager.o \
+  $(OBJ)/dlhandler.o \
+  $(OBJ)/map.o \
+  $(OBJ)/entity.o \
+  $(OBJ)/world.o \
+  $(OBJ)/tile.o \
+  $(OBJ)/wall.o \
+  $(OBJ)/wooden_floor.o \
+  $(OBJ)/sprite.o \
+  $(OBJ)/character.o \
+  $(OBJ)/cat.o
+
+SO_OBJ_FILES = $(OBJ)/cat.o \
+	$(OBJ)/entity.o \
+	$(OBJ)/tile.o
+
 ALLEGRO = -lallegro -lallegro_main -lallegro_primitives -lallegro_image -lallegro_dialog -lallegro_audio -lallegro_acodec
 
-# OUT_DIR = bin
-# IN_DIR = lib
+# defaults #
 
-# SOURCE_FILES = ${IN_DIR}/main.cc ${IN_DIR}/dlhandler.cc ${IN_DIR}/world/world.cc ${IN_DIR}/world/entities/entity.cc
+BUILD = debug
+ARCH = x86
 
-# ${OUT_DIR}/%.o: ${IN_DIR}/%.cc
-# 	g++ -c -o $@ $<
+# compiler options #
 
-# ${MKDIR} ${OUT_DIR}
-# ${CXX} -o ${OUT_DIR}/cat.so ${IN_DIR}/cat.cc ${IN_DIR}/world/entities/entity.cc -shared -fPIC ${CXXFLAGS}
-# ${CXX} -o ${OUT_DIR}/main ${SOURCE_FILES} -ldl ${CXXFLAGS}
+CXX = g++
+CXXFLAGS = -c -Wall -Werror
+HLOOKUPFLAGS = -I$(LIB_H)
 
-OBJECTS = bin/main.o \
-	bin/game.o \
-	bin/manager.o \
-	bin/dlhandler.o \
-	bin/map.o \
-	bin/entity.o \
-	bin/world.o \
-	bin/tile.o \
-	bin/wall_tile.o \
-	bin/wooden_floor_tile.o \
-	bin/sprite.o \
-	bin/character.o \
-	bin/cat.o
+ifeq ($(BUILD),debug)
+	CXXFLAGS += -g
+endif
 
+ifeq ($(BUILD),release)
+	RDIR = ./release
+	BIN = $(RDIR)
+endif
+
+#-----------------------#
+#        targets        #
+#-----------------------#
+
+.PHONY: all
 all:
-	g++ -c -o bin/entity.o lib/world/entity.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/tile.o lib/world/tiles/tile.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/wall_tile.o lib/world/tiles/wall.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/wooden_floor_tile.o lib/world/tiles/wooden_floor.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/world.o lib/world/world.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/map.o lib/world/map.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/sprite.o lib/world/sprite.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/character.o lib/world/characters/character.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/cat.o lib/world/characters/cat.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/dlhandler.o lib/dlhandler.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/manager.o lib/manager.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/game.o lib/game.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
-	g++ -c -o bin/main.o lib/main.cc ${HLOOKUPFLAGS} ${CXXFLAGS}
+	@echo "#------ Creating $(BUILD) build in $(BIN) directory... ------#"
+	mkdir -p $(BIN) $(OBJ)
+	make main
+	make slibs
+	cp ./dlcompile.sh $(BIN)/
+	@echo "#------ Compilation done. Run $(BIN)/main to start ------#"
 
-	# g++ -o bin/cat.so bin/cat.o bin/entity.o bin/tile.o -shared -fPIC ${CXXFLAGS}
-	g++ -o bin/main ${OBJECTS} -ldl ${CXXFLAGS} ${ALLEGRO}
+.PHONY: main
+main:
+	@echo "#------ Compiling main... ------#"
+	make $(BIN)/main
+
+.PHONY: slibs
+slibs:
+	@echo "#------ Compiling shared libs... ------#"
+	make $(BIN)/cat.so
+
+.PHONY: help
+help:
+	@echo
+	@echo "  make [target] [OPTIONS]"
+	@echo
+	@echo "  targets:"
+	@echo "     all              Builds application and shared libs (default)"
+	@echo "     main             Builds application"
+	@echo "     slibs            Builds shared libs for application"
+	@echo "     clean            Cleans project build"
+	@echo "     help             Prints this message"
+	@echo
+	@echo "  options:"
+	@echo "     BUILD=debug      Builds a debug build (default)"
+	@echo "     BUILD=release    Builds a release build"
+	@echo "     ARCH=x86         Builds a x86 build (default)"
+	@echo "     ARCH=arm         Builds an arm build"
+	@echo "     RDIR=release     Creates release in given directory (default: release)"
+
+.PHONY: clean
+clean:
+	rm -f $(OBJ)/* $(BIN)/*
+	rmdir $(OBJ) $(BIN)
+
+#-----------------------#
+#         files         #
+#-----------------------#
+
+$(BIN)/main: $(OBJ_FILES)
+	$(CXX) $^ ${ALLEGRO} -ldl -o $(BIN)/main
+
+$(BIN)/cat.so: $(SO_OBJ_FILES)
+	# $(CXX) $^ -shared -fPIC -o $(BIN)/cat.so
+	@echo "skip"
+
+# $(OBJ)/cat.o: $(LIB)/cat.cc $(LIB_H)/cat.h
+# 	# $(CXX) $< $(CXXFLAGS) $(HLOOKUPFLAGS) -fPIC -o $@
+
+$(OBJ)/%.o: $(LIB)/%.cc $(LIB_H)/%.h
+	$(CXX) $< $(CXXFLAGS) $(HLOOKUPFLAGS) -o $@
+
+$(OBJ)/%.o: $(LIB)/**/%.cc $(LIB_H)/**/%.h
+	$(CXX) $< $(CXXFLAGS) $(HLOOKUPFLAGS) -o $@
+
+$(OBJ)/%.o: $(LIB)/**/*/%.cc $(LIB_H)/**/*/%.h
+	$(CXX) $< $(CXXFLAGS) $(HLOOKUPFLAGS) -o $@
+
+$(OBJ)/%.o: $(LIB)/%.cc
+	$(CXX) $< $(CXXFLAGS) $(HLOOKUPFLAGS) -o $@
