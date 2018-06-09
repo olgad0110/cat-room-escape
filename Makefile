@@ -77,13 +77,22 @@ clean:
 #-----------------------#
 
 $(BIN)/main: $(OBJ_FILES)
-	$(CXX) $^ -o $(BIN)/main -ldl
+	$(CXX) $^ -ldl -o $(BIN)/main
 
 $(BIN)/cat.so: $(SO_OBJ_FILES)
-	$(CXX) $^ -o $(BIN)/cat.so -shared -fPIC
+	$(CXX) $^ -shared -fPIC -o $(BIN)/cat.so 
+
+$(OBJ)/cat.o: $(LIB)/cat.cc $(LIB_H)/cat.h
+	$(CXX) $< $(CXXFLAGS) $(HLOOKUPFLAGS) -fPIC -o $@
+
+$(OBJ)/object.o: $(LIB)/world/object.cc $(LIB_H)/object.h
+	$(CXX) $< $(CXXFLAGS) $(HLOOKUPFLAGS) -fPIC -o $@
+
+$(OBJ)/%.o: $(LIB)/%.cc $(LIB_H)/%.h
+	$(CXX) $< $(CXXFLAGS) $(HLOOKUPFLAGS) -o $@
 
 $(OBJ)/%.o: $(LIB)/**/%.cc $(LIB_H)/%.h
-	$(CXX) $(CXXFLAGS) $(HLOOKUPFLAGS) $< -o $@
+	$(CXX) $< $(CXXFLAGS) $(HLOOKUPFLAGS) -o $@
 
 $(OBJ)/%.o: $(LIB)/%.cc
-	$(CXX) $(CXXFLAGS) $(HLOOKUPFLAGS) $< -o $@
+	$(CXX) $< $(CXXFLAGS) $(HLOOKUPFLAGS) -o $@
