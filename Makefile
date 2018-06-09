@@ -80,7 +80,7 @@ $(BIN)/main: $(OBJ_FILES)
 	$(CXX) $^ -ldl -o $(BIN)/main
 
 $(BIN)/cat.so: $(SO_OBJ_FILES)
-	$(CXX) $^ -shared -fPIC -o $(BIN)/cat.so 
+	$(CXX) $^ -shared -fPIC -o $(BIN)/cat.so
 
 $(OBJ)/cat.o: $(LIB)/cat.cc $(LIB_H)/cat.h
 	$(CXX) $< $(CXXFLAGS) $(HLOOKUPFLAGS) -fPIC -o $@
