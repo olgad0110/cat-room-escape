@@ -12,10 +12,38 @@ namespace world {
   Sprite::~Sprite() {}
 
   void Sprite::draw(const int &pos_x, const int &pos_y) {
-    al_draw_bitmap_region(bitmap, x, y, size_x, size_y, pos_x, pos_y, 0);
+    int iso_x = pos_x - pos_y;
+    int iso_y = (pos_x + pos_y) / 2;
+    al_draw_bitmap_region(bitmap, x, y, size_x, size_y, iso_x, iso_y, 0);
+
+    // iso_x = (pos_x + 64) - pos_y;
+    // iso_y = (pos_x + 64 + pos_y) / 2;
+    // al_draw_bitmap_region(bitmap, x, y, size_x, size_y, iso_x, iso_y, 0);
+
+    // iso_x = pos_x - (pos_y + 64);
+    // iso_y = (pos_x + pos_y + 64) / 2;
+    // al_draw_bitmap_region(bitmap, x, y, size_x, size_y, iso_x, iso_y, 0);
+
+    // iso_x = (pos_x + 64) - (pos_y + 64);
+    // iso_y = (pos_x + 64 + pos_y + 64) / 2;
+    // al_draw_bitmap_region(bitmap, x, y, size_x, size_y, iso_x, iso_y, 0);
   }
 
   void Sprite::draw(const int &pos_x, const int &pos_y, const int &x, const int &y) {
-    al_draw_bitmap_region(bitmap, x, y, size_x, size_y, pos_x, pos_y, 0);
+    int iso_x = pos_x - pos_y;
+    int iso_y = (pos_x + pos_y) / 2;
+    al_draw_bitmap_region(bitmap, x, y, size_x, size_y, iso_x, iso_y, 0);
+
+    // iso_x = (pos_x + 64) - pos_y;
+    // iso_y = (pos_x + 64 + pos_y) / 2;
+    // al_draw_bitmap_region(bitmap, x, y, size_x, size_y, iso_x, iso_y, 0);
+
+    // iso_x = pos_x - (pos_y + 64);
+    // iso_y = (pos_x + pos_y + 64) / 2;
+    // al_draw_bitmap_region(bitmap, x, y, size_x, size_y, iso_x, iso_y, 0);
+
+    // iso_x = (pos_x + 64) - (pos_y + 64);
+    // iso_y = (pos_x + 64 + pos_y + 64) / 2;
+    // al_draw_bitmap_region(bitmap, x, y, size_x, size_y, iso_x, iso_y, 0);  }
   }
 }

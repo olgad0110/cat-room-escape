@@ -1,7 +1,7 @@
 #include "world/tiles/tile.h"
 
 namespace world {
-  Tile::Tile(const std::string &a_name, const bool &a_int, const bool &a_ent, const int &a_x, const int &a_y) : Entity(a_name, a_int, a_ent, a_x, a_y, TILE_SIZE, TILE_SIZE) {
+  Tile::Tile(const std::string &a_name, const bool &a_int, const bool &a_ent, const int &a_x, const int &a_y) : Entity(a_name, a_int, a_ent, a_x, a_y, TILE_WIDTH, TILE_HEIGHT) {
     movable = false;
     entities.reserve(10);
   }

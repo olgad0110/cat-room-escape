@@ -5,7 +5,7 @@ namespace world {
     grid_size_x = 11;
     grid_size_y = 11;
 
-    tiles_bitmap = al_load_bitmap("images/tiles.png");
+    tiles_bitmap = al_load_bitmap("graphics/tiles/iso_wood_light.png");
     cat_bitmap = al_load_bitmap("images/cat.png");
 
     grid = new world::Tile**[grid_size_y];

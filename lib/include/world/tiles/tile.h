@@ -9,6 +9,9 @@
 
 namespace world {
   const int TILE_SIZE = 128;
+  const int TILE_WIDTH = 128;
+  const int TILE_HEIGHT = 64;
+  const int GRAPHIC_TILE_SIZE = 64;
 
   typedef std::vector<world::Entity*> entity_vector;
   typedef entity_vector::iterator entity_iterator;
