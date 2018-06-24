@@ -20,15 +20,3 @@ Note: You need to have `g++` command available and working to run the demo.
 $ make
 ```
 Note: You need to have `g++` command available and working to compile the demo.
-
-## To do
-
-* ~~Compile and load dynamic library during run time~~
-* Game loop
-* Easy output and input (probably console)
-* Easy option to reload dynamic library with ability to specify file name
-* Extend cat class
-* Room objects that cat can interact with
-* Map containing room objects
-* Access (restricted) to room objects and map from dynamic library
-* Overwrite function (e.g. better path finding for cat) from main app inside dynamic library
